@@ -10,6 +10,10 @@ trait TreeStructureTrait
     {
         return $this->tree;
     }
+    public function initTree()
+    {
+        $this->tree = [];
+    }
     public function addTreeStructure($data)
     {
         $tree = isset($this->tree) ? $this->tree : [];
