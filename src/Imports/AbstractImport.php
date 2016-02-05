@@ -17,7 +17,7 @@ abstract class AbstractImport
     public function setConfig($config_file)
     {
         $config = Yaml::parse($config_file);
-        if ( ! $config  ) {
+        if ( is_array($config) === false  ) {
             $config = Yaml::parse(File::get($config_file));
         }
         if ( is_array($config) ) {
