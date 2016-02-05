@@ -20,7 +20,6 @@ abstract class AbstractImport
         if ( ! $config  ) {
             $config = Yaml::parse(File::get($config_file));
         }
-        print_r($config);
         if ( is_array($config) ) {
             $this->config = array_merge($this->config,$config);
         }
