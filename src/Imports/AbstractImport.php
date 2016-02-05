@@ -2,6 +2,8 @@
 namespace Sonar\Common\Imports;
 
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
+use File;
 
 abstract class AbstractImport
 {
@@ -15,6 +17,10 @@ abstract class AbstractImport
     public function setConfig($config_file)
     {
         $config = Yaml::parse($config_file);
+        if ( ! $config  ) {
+            $config = Yaml::parse(File::get($config_file));
+        }
+        print_r($config);
         if ( is_array($config) ) {
             $this->config = array_merge($this->config,$config);
         }
