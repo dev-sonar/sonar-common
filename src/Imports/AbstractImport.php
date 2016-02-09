@@ -61,7 +61,7 @@ abstract class AbstractImport
             } elseif ( isset($rec['csv']) &&  isset($csv[($rec['csv']+0)-1]) ) {
                 $model->$key = $csv[($rec['csv']+0)-1];
             } else {
-                throw new \Exception('設定ファイルが正しくありません。table=' . $table . ',key=' . $key);
+                $model->$key = null;
             }
         }
         $model->save();
