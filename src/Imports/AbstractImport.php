@@ -58,8 +58,10 @@ abstract class AbstractImport
                 } else {
                     throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。');
                 }
-            } elseif ( isset($rec['csv']) &&  isset($csv[($rec['csv']+0)-1]) ) {
+            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) == true && isset($csv[($rec['csv']+0)-1]) ) {
                 $model->$key = $csv[($rec['csv']+0)-1];
+            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) == false && isset($csv[$rec['csv']]) ) {
+                $model->$key = $csv[$rec['csv']];
             } else {
                 $model->$key = null;
             }
