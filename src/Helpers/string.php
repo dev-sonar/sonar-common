@@ -13,5 +13,6 @@ if ( ! function_exists('strcat') ) {
                 return null;
             }
         }
+        return $str;
     }
 }
