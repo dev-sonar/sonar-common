@@ -1,0 +1,8 @@
+tests:
+  -
+    id:
+      csv: "1"
+    name:
+      csv: "2,3"
+      func: setName2
+
