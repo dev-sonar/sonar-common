@@ -11,11 +11,11 @@ class HelpersServiceProvider extends ServiceProvider
     {
         parent::__construct($app);
 
-        $this->file_system = $file ? $file : new Filesystem;
+        $this->filesystem = $file ? $file : new Filesystem;
     }
     public function register()
     {
-        foreach ( $this->file_system->allFiles(__DIR__ . '/Helpers') as $rec ) {
+        foreach ( $this->filesystem->allFiles(__DIR__ . '/Helpers') as $rec ) {
             if ( preg_match("/\.php$/",$rec->getFilename()) ) {
                 require_once($rec->getPathname());
             }
