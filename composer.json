@@ -2,7 +2,7 @@
     "name": "sonar/common",
     "description": "sonar common libraries",
     "keywords": [
-        "sonar"
+        "sonar",
         "common"
     ],
     "license": "MIT",
