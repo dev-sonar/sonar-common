@@ -6,5 +6,5 @@ build:
             -
                 command: 'phpunit --coverage-clover=some-file'
                 coverage:
-                    file: 'coverage.clover'
+                    file: 'some-file'
                     format: 'clover'
