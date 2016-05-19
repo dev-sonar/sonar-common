@@ -7,7 +7,7 @@ if ( ! function_exists('strcat')) {
         $str = '';
 
         foreach ($args as $rec) {
-            if ( $rec ) {
+            if ($rec) {
                 $str .= $rec;
             } else {
                 return null;

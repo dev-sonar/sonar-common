@@ -2,16 +2,16 @@
 use Carbon\Carbon;
 
 if ( ! function_exists('strtodate')) {
-    function strtodate($date,$format='Y/m/d')
+    function strtodate($date, $format='Y/m/d')
     {
         if ($date) {
-            return date($format,strtotime($date));
+            return date($format, strtotime($date));
         }
         return null;
     }
 }
 
-if ( ! function_exists('ym') ) {
+if ( ! function_exists('ym')) {
     function ym($ym)
     {
         if ($ym && $ym > 190001) {
@@ -21,9 +21,9 @@ if ( ! function_exists('ym') ) {
     }
 }
 
-if ( ! function_exists('elapse_days') ) {
+if ( ! function_exists('elapse_days')) {
     function elapse_days($timestamp)
     {
-        return Carbon::createFromTimeStamp($timestamp)->diffInDays(Carbon::now(),false);
+        return Carbon::createFromTimeStamp($timestamp)->diffInDays(Carbon::now(), false);
     }
 }

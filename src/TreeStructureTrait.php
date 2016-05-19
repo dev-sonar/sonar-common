@@ -19,13 +19,17 @@ trait TreeStructureTrait
         $tree = isset($this->tree) ? $this->tree : [];
 
         foreach ($data as $rec) {
-            if (is_object($rec) === false) throw new Exception('data record must be object.');
-            if (isset($rec->id) === false) throw new Exception('data record object does not have property => "id".');
+            if (is_object($rec) === false) {
+                throw new Exception('data record must be object.');
+            }
+            if (isset($rec->id) === false) {
+                throw new Exception('data record object does not have property => "id".');
+            }
             if (isset($rec->parent_id) === false || ! $rec->parent_id) {
                 $rec->children = [];
                 $tree[$rec->id] = $rec;
             } else {
-                $this->addTree($tree,$rec);
+                $this->addTree($tree, $rec);
             }
         }
         $this->tree = $tree;
@@ -38,7 +42,7 @@ trait TreeStructureTrait
                 $rec->children[$data->id] = $data;
                 return;
             } elseif (count($rec->children)) {
-                $this->addTree($rec->children,$data);
+                $this->addTree($rec->children, $data);
             }
             unset($rec);
         }
@@ -48,9 +52,15 @@ trait TreeStructureTrait
         $tree = isset($this->tree) ? $this->tree : [];
         foreach ($tree as &$rec) {
             foreach ($count_data as $count) {
-                if (isset($rec->id) === false) throw new Exception('data record object does not have property => "id".');
-                if (isset($count->id) === false) throw new Exception('count data record object does not have property => "id".');
-                if (isset($count->count) === false) throw new Exception('count data record object does not have property => "count".');
+                if (isset($rec->id) === false) {
+                    throw new Exception('data record object does not have property => "id".');
+                }
+                if (isset($count->id) === false) {
+                    throw new Exception('count data record object does not have property => "id".');
+                }
+                if (isset($count->count) === false) {
+                    throw new Exception('count data record object does not have property => "count".');
+                }
                 if ($rec->id == $count->id) {
                     $rec->count = $count->count;
                 }
