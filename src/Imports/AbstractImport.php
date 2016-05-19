@@ -32,7 +32,8 @@ abstract class AbstractImport
     {
         foreach ( $models as $table => $model ) {
             if ( is_array($model) ) {
-                for($i=0;$i<count($model);$i++) {
+                $total = count($model);
+                for($i=0;$i<$total;$i++) {
                     if ( isset($this->config[$table][$i]) ) {
                         $this->setModel($model[$i],$this->config[$table][$i],$csv,$table);
                     } else {
@@ -47,7 +48,7 @@ abstract class AbstractImport
     public function setModel($model,$config,$csv,$table)
     {
         foreach ( $config as $key => $rec ) {
-            if ( isset($rec['func']) == true && $rec['func'] ) {
+            if ( isset($rec['func']) === true && $rec['func'] ) {
                 $func = $rec['func'];
                 $col = isset($rec['csv']) ? $rec['csv'] : null;
                 if ( strpos($col,",") !== false ) {
@@ -58,9 +59,9 @@ abstract class AbstractImport
                 } else {
                     throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。');
                 }
-            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) == true && isset($csv[($rec['csv']+0)-1]) ) {
+            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) === true && isset($csv[($rec['csv']+0)-1]) ) {
                 $model->$key = $csv[($rec['csv']+0)-1];
-            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) == false && isset($csv[$rec['csv']]) ) {
+            } elseif ( isset($rec['csv']) && is_numeric($rec['csv']) === false && isset($csv[$rec['csv']]) ) {
                 $model->$key = $csv[$rec['csv']];
             } else {
                 $model->$key = null;
