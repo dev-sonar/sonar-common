@@ -3,22 +3,24 @@ namespace Sonar\Common\Imports;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
-use File;
+use Illuminate\Filesystem\Filesystem;
 
 abstract class AbstractImport
 {
     protected $config;
+    private $filesystem;
 
-    public function __construct()
+    public function __construct(Filesystem $filesystem=null)
     {
         $this->config = [];
+        $this->filesystem = $filesystem ? $filesystem : new Filesystem;
     }
 
-    public function setConfig($config_file)
+    public function setConfig($config_file,$is_force=false)
     {
         $config = Yaml::parse($config_file);
-        if ( is_array($config) === false  ) {
-            $config = Yaml::parse(File::get($config_file));
+        if ( is_array($config) === false || $is_force ) {
+            $config = Yaml::parse($this->filesystem->get($config_file));
         }
         if ( is_array($config) ) {
             $this->config = array_merge($this->config,$config);

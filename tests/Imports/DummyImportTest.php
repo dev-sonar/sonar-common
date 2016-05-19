@@ -21,7 +21,7 @@ class DummyImportTest extends TestCase
     {
         $obj = new DummyImport();
 
-        $obj->setConfig(__DIR__ . '/test.yml');
+        $obj->setConfig(__DIR__ . '/test.yml',true);
 
         $model = Mockery::mock('model');
         $model->shouldReceive('save')->once();
@@ -79,7 +79,20 @@ class DummyImportTest extends TestCase
             'tests' => [$model],
         ];
         $obj->setModels($models,$csv);
+    }
+    public function test4()
+    {
+        $obj = new DummyImport();
 
+        $obj->setConfig(__DIR__ . '/test4.yml');
+
+        $csv = ['id'=>'1','name1'=>'hoge'];
+        $model = Mockery::mock('model');
+        $model->shouldReceive('save')->once();
+        $models = [
+            'tests' => [$model],
+        ];
+        $obj->setModels($models,$csv);
     }
     public function testcsvRecord()
     {

@@ -13,6 +13,7 @@ class DummyTreeStructureTest extends TestCase
     public function test正常()
     {
         $obj = new DummyTreeStructure;
+        $obj->initTree();
         $data = $this->getData();
 
         $obj->addTreeStructure($data);
