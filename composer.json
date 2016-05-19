@@ -1,9 +1,9 @@
 {
     "name": "sonar/common",
-    "description": ":package_description",
+    "description": "sonar common libraries",
     "keywords": [
-        "league",
         "sonar"
+        "common"
     ],
     "license": "MIT",
     "authors": [
