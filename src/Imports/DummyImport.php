@@ -9,7 +9,7 @@ class DummyImport extends AbstractImport
     {
         $this->tmp = $tmp;
     }
-    public function setName($model,$key,$csv,$col)
+    public function setName($model, $key, $csv, $col)
     {
         $col = 0;
         $model->$key = $csv[$col];

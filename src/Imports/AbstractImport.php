@@ -2,7 +2,6 @@
 namespace Sonar\Common\Imports;
 
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Yaml\Exception\ParseException;
 use Illuminate\Filesystem\Filesystem;
 
 abstract class AbstractImport

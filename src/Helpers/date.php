@@ -1,10 +1,10 @@
 <?php
 use Carbon\Carbon;
 
-if ( ! function_exists('strtodate') ) {
+if ( ! function_exists('strtodate')) {
     function strtodate($date,$format='Y/m/d')
     {
-        if ( $date ) {
+        if ($date) {
             return date($format,strtotime($date));
         }
         return null;
@@ -14,7 +14,7 @@ if ( ! function_exists('strtodate') ) {
 if ( ! function_exists('ym') ) {
     function ym($ym)
     {
-        if ( $ym && $ym > 190001 ) {
+        if ($ym && $ym > 190001) {
             return (floor($ym/100)) . '年' . ( floor($ym%100)) . '月';
         }
         return null;

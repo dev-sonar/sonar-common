@@ -7,9 +7,9 @@ trait CsvReaderTrait
 
     public function csvRead($file,$delimiter=",",$envlosure='"',$escape="\\",$length=1024*1024)
     {
-        if ( ($fp = @fopen($file,"r")) !== false ) {
+        if (($fp = @fopen($file,"r")) !== false) {
 
-            while(($data = fgetcsv($fp,$length,$delimiter,$envlosure,$escape)) !== false ) {
+            while(($data = fgetcsv($fp,$length,$delimiter,$envlosure,$escape)) !== false) {
                 $this->csvRecord($data);
             }
             fclose($fp);
