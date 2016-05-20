@@ -28,7 +28,7 @@ class DummyImportTest extends TestCase
         $models = [
             'tests' => [$model],
         ];
-        $csv = ['id','name1','name2'];
+        $csv = ['id','name1'];
         $obj->setModels($models,$csv);
     }
 

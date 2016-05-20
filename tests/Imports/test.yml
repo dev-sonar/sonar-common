@@ -3,6 +3,6 @@ tests:
     id:
       csv: "1"
     name:
-      csv: "2,3"
+      csv: "2"
       func: setName
 
