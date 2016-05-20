@@ -25,10 +25,12 @@ abstract class AbstractImport
             $this->config = array_merge($this->config, $config);
         }
     }
+
     public function getConfig()
     {
         return $this->config;
     }
+
     public function setModels($models, $csv)
     {
         foreach ($models as $table => $model) {
