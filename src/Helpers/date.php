@@ -2,7 +2,7 @@
 use Carbon\Carbon;
 
 if ( ! function_exists('strtodate')) {
-    function strtodate($date, $format='Y/m/d')
+    function strtodate($date, $format = 'Y/m/d')
     {
         if ($date) {
             return date($format, strtotime($date));
@@ -15,7 +15,7 @@ if ( ! function_exists('ym')) {
     function ym($ym)
     {
         if ($ym && $ym > 190001) {
-            return (floor($ym/100)) . '年' . ( floor($ym%100)) . '月';
+            return (floor($ym/100)) . '年' . (floor($ym%100)) . '月';
         }
         return null;
     }

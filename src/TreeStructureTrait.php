@@ -37,7 +37,7 @@ trait TreeStructureTrait
     protected function addTree(&$tree, $data)
     {
         foreach ($tree as $id => &$rec) {
-            if ( $data->parent_id == $id ) {
+            if ($data->parent_id == $id) {
                 $data->children = [];
                 $rec->children[$data->id] = $data;
                 return;

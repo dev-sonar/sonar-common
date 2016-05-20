@@ -9,19 +9,19 @@ abstract class AbstractImport
     protected $config;
     private $filesystem;
 
-    public function __construct(Filesystem $filesystem=null)
+    public function __construct(Filesystem $filesystem = null)
     {
         $this->config = [];
         $this->filesystem = $filesystem ? $filesystem : new Filesystem;
     }
 
-    public function setConfig($config_file,$is_force=false)
+    public function setConfig($config_file, $is_force = false)
     {
         $config = Yaml::parse($config_file);
-        if ( is_array($config) === false || $is_force ) {
+        if (is_array($config) === false || $is_force) {
             $config = Yaml::parse($this->filesystem->get($config_file));
         }
-        if ( is_array($config) ) {
+        if (is_array($config)) {
             $this->config = array_merge($this->config,$config);
         }
     }
@@ -29,14 +29,14 @@ abstract class AbstractImport
     {
         return $this->config;
     }
-    public function setModels($models,$csv)
+    public function setModels($models, $csv)
     {
         foreach ( $models as $table => $model ) {
             if ( is_array($model) ) {
                 $total = count($model);
                 for($i=0;$i<$total;$i++) {
-                    if ( isset($this->config[$table][$i]) ) {
-                        $this->setModel($model[$i],$this->config[$table][$i],$csv,$table);
+                    if (isset($this->config[$table][$i])) {
+                        $this->setModel($model[$i], $this->config[$table][$i],$csv,$table);
                     } else {
                         throw new \Exception('設定ファイルが正しくないか、構成が異なっています。table=' . $table);
                     }
@@ -46,7 +46,7 @@ abstract class AbstractImport
         return true;
     }
 
-    public function setModel($model,$config,$csv,$table)
+    public function setModel($model, $config, $csv, $table)
     {
         foreach ( $config as $key => $rec ) {
             if ( isset($rec['func']) === true && $rec['func'] ) {

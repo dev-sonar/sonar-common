@@ -1,6 +1,6 @@
 <?php
 
-if ( ! function_exists('numeric_format') ) {
+if ( ! function_exists('numeric_format')) {
     function numeric_format($val)
     {
         $number = str_replace(",", "", $val);

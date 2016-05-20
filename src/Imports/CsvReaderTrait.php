@@ -9,7 +9,7 @@ trait CsvReaderTrait
     {
         if (($fp = @fopen($file, "r")) !== false) {
 
-            while(($data = fgetcsv($fp, $length, $delimiter, $envlosure, $escape)) !== false) {
+            while (($data = fgetcsv($fp, $length, $delimiter, $envlosure, $escape)) !== false) {
                 $this->csvRecord($data);
             }
             fclose($fp);
