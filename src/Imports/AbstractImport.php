@@ -58,7 +58,7 @@ abstract class AbstractImport
                 if (method_exists($this, $func) === true) {
                     $this->$func($model, $key, $csv, $col);
                 } else {
-                    throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。');
+                    throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。(table=' . $table . ')');
                 }
             } elseif (isset($rec['csv']) === true && is_numeric($rec['csv']) === true && isset($csv[($rec['csv']+0)-1]) === true) {
                 $model->$key = $csv[($rec['csv']+0)-1];
