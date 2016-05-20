@@ -4,6 +4,7 @@ namespace Sonar\Common\Imports;
 class DummyImport extends AbstractImport
 {
     use CsvReaderTrait;
+    private $tmp;
 
     public function csvRecord($tmp)
     {
@@ -11,7 +12,6 @@ class DummyImport extends AbstractImport
     }
     public function setName($model, $key, $csv, $col)
     {
-        $col = 0;
         $model->$key = $csv[$col];
     }
 }
