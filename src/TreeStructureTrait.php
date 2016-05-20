@@ -52,12 +52,6 @@ trait TreeStructureTrait
         $tree = isset($this->tree) ? $this->tree : [];
         foreach ($tree as &$rec) {
             foreach ($count_data as $count) {
-/*
-    trreの中にidのないものは存在しない(addTreeStructureで例外となる)
-                if (isset($rec->id) === false) {
-                    throw new Exception('data record object does not have property => "id".');
-                }
-*/
                 if (isset($count->id) === false) {
                     throw new Exception('count data record object does not have property => "id".');
                 }
