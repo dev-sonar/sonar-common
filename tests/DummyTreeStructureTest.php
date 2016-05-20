@@ -117,6 +117,22 @@ class DummyTreeStructureTest extends TestCase
         $this->assertTrue($tmp[1]->count == 10);
     }
 
+    /**
+     * @expectedException Exception
+     */
+    public function testMergeCount異常4()
+    {
+        $obj = new DummyTreeStructure;
+        $obj->addTreeStructure($this->getData());
+        $obj->addTreeStructure($this->getErrorData());
+
+        $obj->mergeCount(['1' => 'hoge']);
+
+//        $tmp = $obj->getTree();
+
+//        $this->assertTrue($tmp[1]->count == 10);
+    }
+
 
     protected function getCountData()
     {
@@ -149,6 +165,20 @@ class DummyTreeStructureTest extends TestCase
 
         return $data;
     }
+    protected function getErrorData()
+    {
+        $data = [];
+        $tmp = new \StdClass;
+        $tmp->name = 'hoge1';
+        $data[] = $tmp;
+
+        $tmp = new \StdClass;
+        $tmp->name = 'hoge2';
+        $data[] = $tmp;
+
+        return $data;
+    }
+
     protected function getData2()
     {
         $data = [];
