@@ -34,14 +34,15 @@ abstract class AbstractImport
     public function setModels($models, $csv)
     {
         foreach ($models as $table => $model) {
-            if (is_array($model)) {
-                $total = count($model);
-                for ($i = 0; $i < $total; $i++) {
-                    if (isset($this->config[$table][$i])) {
-                        $this->setModel($model[$i], $this->config[$table][$i], $csv, $table);
-                    } else {
-                        throw new \Exception('設定ファイルが正しくないか、構成が異なっています。table=' . $table);
-                    }
+            if (is_array($model) == false ) {
+                continue;
+            }
+            $total = count($model);
+            for ($i = 0; $i < $total; $i++) {
+                if (isset($this->config[$table][$i])) {
+                    $this->setModel($model[$i], $this->config[$table][$i], $csv, $table);
+                } else {
+                    throw new \Exception('設定ファイルが正しくないか、構成が異なっています。table=' . $table);
                 }
             }
         }
@@ -51,26 +52,30 @@ abstract class AbstractImport
     public function setModel($model, $config, $csv, $table)
     {
         foreach ($config as $key => $rec) {
-            if (isset($rec['func']) === true && $rec['func']) {
-                $func = $rec['func'];
-                $col = isset($rec['csv']) ? $rec['csv'] : null;
-                if (strpos($col, ",") !== false) {
-                    $col = explode(",", $col);
-                }
-                if (method_exists($this, $func) === true) {
-                    $this->$func($model, $key, $csv, $col);
-                } else {
-                    throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。(table=' . $table . ')');
-                }
-            } elseif (isset($rec['csv']) === true && is_numeric($rec['csv']) === true && isset($csv[($rec['csv']+0)-1]) === true) {
-                $model->$key = $csv[($rec['csv']+0)-1];
-            } elseif (isset($rec['csv']) === true && is_numeric($rec['csv']) === false && isset($csv[$rec['csv']]) === true) {
-                $model->$key = $csv[$rec['csv']];
+            $col = $this->getCsvCol($rec);
+            $func = ( isset($rec['func']) === true && $rec['func'] ) ? $rec['func'] : null; 
+            if (method_exists($this, $func) === true) {
+                $this->$func($model, $key, $csv, $col);
+            } elseif ( $func && method_exists($this, $func) === false) {
+                throw new \Exception(get_class($this) . 'に関数＝' . $func . 'が実装されていません。(table=' . $table . ')');
+            } elseif (isset($rec['csv']) === true && isset($csv[$col]) === true) {
+                $model->$key = $csv[$col];
             } else {
                 $model->$key = null;
             }
         }
         $model->save();
+    }
+
+    private function getCsvCol($rec)
+    {
+        $col = isset($rec['csv']) ? $rec['csv'] : null;
+        if (strpos($col, ",") !== false) {
+            $col = explode(",", $col);
+        } elseif ( is_numeric($col) === true ) {
+            $col = ($col + 0 ) -1;
+        } 
+        return $col;
     }
 
 }
