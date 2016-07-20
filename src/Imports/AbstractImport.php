@@ -31,7 +31,7 @@ abstract class AbstractImport
         return $this->config;
     }
 
-    public function setModels($models, $csv)
+    public function setModels($models, $csv,$is_save=true)
     {
         foreach ($models as $table => $model) {
             if (is_array($model) == false ) {
@@ -40,7 +40,7 @@ abstract class AbstractImport
             $total = count($model);
             for ($i = 0; $i < $total; $i++) {
                 if (isset($this->config[$table][$i])) {
-                    $this->setModel($model[$i], $this->config[$table][$i], $csv, $table);
+                    $this->setModel($model[$i], $this->config[$table][$i], $csv, $table,$is_save);
                 } else {
                     throw new \Exception('設定ファイルが正しくないか、構成が異なっています。table=' . $table);
                 }
@@ -49,7 +49,7 @@ abstract class AbstractImport
         return true;
     }
 
-    public function setModel($model, $config, $csv, $table)
+    public function setModel($model, $config, $csv, $table,$is_save=true)
     {
         foreach ($config as $key => $rec) {
             $col = $this->getCsvCol($rec);
@@ -64,7 +64,9 @@ abstract class AbstractImport
                 $model->$key = null;
             }
         }
-        $model->save();
+        if ( $is_save ) {
+            $model->save();
+        }
     }
 
     private function getCsvCol($rec)
