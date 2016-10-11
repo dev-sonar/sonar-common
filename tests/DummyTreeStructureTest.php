@@ -59,7 +59,10 @@ class DummyTreeStructureTest extends TestCase
 
         $tmp = $obj->getTree();
 
+        $tmp3 = $tmp[1]->children[11];
+
         $this->assertTrue($tmp[1]->count == 10);
+        $this->assertTrue($tmp3->children[111]->count == 111);
     }
 
     /**
