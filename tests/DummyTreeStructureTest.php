@@ -63,6 +63,25 @@ class DummyTreeStructureTest extends TestCase
 
         $this->assertTrue($tmp[1]->count == 10);
         $this->assertTrue($tmp3->children[111]->count == 111);
+
+    }
+
+    public function testMergeCount2()
+    {
+        $obj = new DummyTreeStructure;
+        $obj->addTreeStructure($this->getData());
+        $obj->addTreeStructure($this->getData2());
+        $obj->addTreeStructure($this->getData3());
+
+        $obj->mergeCount($this->getCountData(),true);
+
+        $tmp = $obj->getTree();
+
+        $tmp3 = $tmp[1]->children[11];
+
+        $this->assertFalse($tmp[1]->count == 10);
+        $this->assertTrue($tmp3->children[111]->count == 111);
+        $this->assertTrue($tmp3->count == 111);
     }
 
     /**

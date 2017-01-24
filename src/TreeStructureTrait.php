@@ -47,29 +47,23 @@ trait TreeStructureTrait
             unset($rec);
         }
     }
-    public function mergeCount($count_data)
+    public function mergeCount($count_data,$is_merge=false)
     {
         $tree = isset($this->tree) ? $this->tree : [];
-        $this->addMergeCount($tree,$count_data);
-        /*
-        foreach ($tree as &$rec) {
-            foreach ($count_data as $count) {
-                if (isset($count->id) === false) {
-                    throw new Exception('count data record object does not have property => "id".');
-                }
-                if (isset($count->count) === false) {
-                    throw new Exception('count data record object does not have property => "count".');
-                }
-                if ($rec->id == $count->id) {
-                    $rec->count = $count->count;
-                }
+        foreach ( $count_data as $count ) {
+            if (isset($count->id) === false) {
+                throw new Exception('count data record object does not have property => "id".');
             }
+            if (isset($count->count) === false) {
+                throw new Exception('count data record object does not have property => "count".');
+            }
+            $this->addCount($this->tree,$count->id,$count->count,$is_merge);
+
         }
-         */
         $this->tree = $tree;
     }
-
-    public function addMergeCount(&$tree,$count_data)
+/*
+    public function addMergeCount(&$tree,$id,$count,$is_merge)
     {
         foreach ( $tree as &$rec ) {
             foreach ( $count_data as $count ) {
@@ -81,10 +75,31 @@ trait TreeStructureTrait
                 }
                 if ($rec->id == $count->id) {
                     $rec->count = $count->count;
+                    if ( isset($rec->parent_id) && $is_merge ) {
+                        $this->addCount($this->tree,$rec->parent_id,$count->count);
+                    }
+                } elseif ( count($rec->children) ) {
+                    $this->addMergeCount($rec->children,$count_data,$is_merge);
                 }
-                if ( count($rec->children) ) {
-                    $this->addMergeCount($rec->children,$count_data);
+            }
+            unset($rec);
+        }
+    }
+*/
+    protected function addCount(&$tree,$id,$count,$is_merge)
+    {
+        foreach ( $tree as $rec ) {
+            if ( $rec->id == $id ) {
+                if( isset($rec->count) ) {
+                    $rec->count += $count;
+                } else {
+                    $rec->count = $count;
+                } 
+                if ( isset($rec->parent_id) && $rec->parent_id && $is_merge ) {
+                    $this->addCount($this->tree,$rec->parent_id,$count,$is_merge);
                 }
+            } elseif ( count($rec->children) ) {
+                $this->addCount($rec->children,$id,$count,$is_merge);
             }
         }
     }
