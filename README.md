@@ -12,9 +12,8 @@
 Via Composer
 
 ``` bash
-For Laravel >= 6.x please use master!
 
-$ composer require sonar/common:dev-master
+$ composer require sonar/common:2.0.0
 ```
 
 <!--
