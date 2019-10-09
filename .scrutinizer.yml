@@ -14,5 +14,5 @@ build:
             -
                 command: 'vendor/bin/phpunit --coverage-clover=some-file'
                 coverage:
-                    file: clover.xml
-                    format: php-clover
+                    file: 'some-file'
+                    format: 'clover'
