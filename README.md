@@ -13,7 +13,7 @@ Via Composer
 
 ``` bash
 
-$ composer require sonar/common:2.0.0-dev
+$ composer require sonar/common:1.1.0
 ```
 
 <!--
