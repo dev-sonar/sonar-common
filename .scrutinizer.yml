@@ -5,10 +5,14 @@ build:
             ini:
                 'date.timezone': 'Asia/Tokyo'
 
+    dependencies:
+        before:
+            - composer require phpunit/phpunit:^7.0 --dev
+
     tests:
         override:
             -
-                command: 'phpunit --coverage-clover=some-file'
+                command: 'vendor/bin/phpunit --coverage-clover=some-file'
                 coverage:
-                    file: 'some-file'
-                    format: 'clover'
+                    file: clover.xml
+                    format: php-clover
