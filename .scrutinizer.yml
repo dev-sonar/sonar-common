@@ -7,7 +7,7 @@ build:
 
     dependencies:
         before:
-            - composer require phpunit/phpunit:^7.0 --dev
+            - composer require phpunit/phpunit:7.*
 
     tests:
         override:
