@@ -12,7 +12,15 @@
 Via Composer
 
 ``` bash
-$ composer require sonar/common:dev-master
+Case laravel 5.x
+
+$ composer require sonar/common:1.2.0
+
+Case laravel 6.x
+
+$ composer require sonar/common:2.0.0
+
+
 ```
 
 <!--
