@@ -62,30 +62,6 @@ trait TreeStructureTrait
         }
         $this->tree = $tree;
     }
-/*
-    public function addMergeCount(&$tree,$id,$count,$is_merge)
-    {
-        foreach ( $tree as &$rec ) {
-            foreach ( $count_data as $count ) {
-                if (isset($count->id) === false) {
-                    throw new Exception('count data record object does not have property => "id".');
-                }
-                if (isset($count->count) === false) {
-                    throw new Exception('count data record object does not have property => "count".');
-                }
-                if ($rec->id == $count->id) {
-                    $rec->count = $count->count;
-                    if ( isset($rec->parent_id) && $is_merge ) {
-                        $this->addCount($this->tree,$rec->parent_id,$count->count);
-                    }
-                } elseif ( count($rec->children) ) {
-                    $this->addMergeCount($rec->children,$count_data,$is_merge);
-                }
-            }
-            unset($rec);
-        }
-    }
-*/
     protected function addCount(&$tree,$id,$count,$is_merge)
     {
         foreach ( $tree as $rec ) {

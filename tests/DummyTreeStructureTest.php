@@ -27,7 +27,7 @@ class DummyTreeStructureTest extends TestCase
         $data = $this->getData3();
         $obj->addTreeStructure($data);
         $tmp = $obj->getTree();
-        $this->assertTrue(count($tmp[1]->children[11]) == 1);
+        $this->assertTrue(count($tmp[1]->children['11']->children) == 1);
     }
     /**
      * @expectedException Exception
@@ -222,13 +222,13 @@ class DummyTreeStructureTest extends TestCase
     {
         $data = [];
         $tmp = new \StdClass;
-        $tmp->parent_id = 11;
+        $tmp->parent_id = '11';
         $tmp->id = 111;
         $tmp->name = 'hoge111';
         $data[] = $tmp;
 
         $tmp = new \StdClass;
-        $tmp->parent_id = 12;
+        $tmp->parent_id = '12';
         $tmp->id = 121;
         $tmp->name = 'hoge121';
         $data[] = $tmp;
