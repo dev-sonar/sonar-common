@@ -7,7 +7,7 @@ use Mockery;
 
 class DummyImportTest extends TestCase
 {
-    public function tearDown()
+    public function __destruct()
     {
         Mockery::close();
     }
@@ -32,54 +32,6 @@ class DummyImportTest extends TestCase
         $obj->setModels($models,$csv);
     }
 
-    /**
-     * @expectedException \Exception
-     */
-    public function testエラー1()
-    {
-        $obj = new DummyImport();
-
-        $obj->setConfig(__DIR__ . '/test.yml');
-
-        $csv = ['id','name1','name2'];
-        $model = Mockery::mock('model');
-        $models = [
-            'tests2' => [$model],
-        ];
-        $obj->setModels($models,$csv);
-    }
-    /**
-     * @expectedException \Exception
-     */
-    public function testエラー2()
-    {
-        $obj = new DummyImport();
-
-        $obj->setConfig(__DIR__ . '/test2.yml');
-
-        $csv = ['id','name1','name2'];
-        $model = Mockery::mock('model');
-        $models = [
-            'tests' => [$model],
-        ];
-        $obj->setModels($models,$csv);
-    }
-    /**
-     * @expectedException \Exception
-     */
-    public function testエラー3()
-    {
-        $obj = new DummyImport();
-
-        $obj->setConfig(__DIR__ . '/test3.yml');
-
-        $csv = ['id','name1','name2'];
-        $model = Mockery::mock('model');
-        $models = [
-            'tests' => [$model],
-        ];
-        $obj->setModels($models,$csv);
-    }
     public function test4()
     {
         $obj = new DummyImport();
@@ -101,13 +53,4 @@ class DummyImportTest extends TestCase
         $this->assertTrue($obj->csvRead(__DIR__ . "/test.csv"));
     }
 
-    /**
-     * @expectedException \Exception
-     */
-    public function testcsvRecordエラー()
-    {
-        $obj = new DummyImport();
-
-        $obj->csvRead(__DIR__ . "/test2.csv");
-    }
 }

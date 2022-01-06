@@ -21,6 +21,10 @@ Case laravel 6.x
 
 $ composer require sonar/common:2.0.0
 
+Case laravel 8.x
+
+$ composer require sonar/common:3.0.0
+
 ```
 
 <!--
