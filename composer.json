@@ -18,13 +18,13 @@
         "illuminate/filesystem": "~8.0",
         "nesbot/carbon": "2.*",
         "symfony/yaml": "3.*",
-        "php" : ">=7.2.0",
-        "phpunit/phpunit": "^9.5"
+        "php" : ">=7.2.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
         "scrutinizer/ocular": "~1.1",
-        "phpspec/prophecy": "~1.5"
+        "phpspec/prophecy": "~1.5",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
