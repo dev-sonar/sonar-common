@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "~8.0",
-        "illuminate/filesystem": "~8.0",
+        "illuminate/support": "~9.0",
+        "illuminate/filesystem": "~9.0",
         "nesbot/carbon": "2.*",
         "symfony/yaml": "5.*",
         "php" : ">=7.2.0"

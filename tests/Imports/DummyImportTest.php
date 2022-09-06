@@ -30,6 +30,8 @@ class DummyImportTest extends TestCase
         ];
         $csv = ['id','name1'];
         $obj->setModels($models,$csv);
+        $this->assertTrue($obj instanceof DummyImport);
+
     }
 
     public function test4()
@@ -45,6 +47,7 @@ class DummyImportTest extends TestCase
             'tests' => [$model],
         ];
         $obj->setModels($models,$csv);
+        $this->assertTrue($obj instanceof DummyImport);
     }
     public function testcsvRecord()
     {
